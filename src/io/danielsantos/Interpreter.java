@@ -110,7 +110,7 @@ public class Interpreter {
     }
 
     private static IntExpression handleNegativeExpression(NegativeExpression expression) throws ErrorException {
-        IntExpression value = handleExpression(expression);
+        IntExpression value = handleExpression(expression.expression);
 
         value.value = -value.value;
 

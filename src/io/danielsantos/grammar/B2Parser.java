@@ -312,7 +312,6 @@ public class B2Parser extends Parser {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public TerminalNode SEMI() { return getToken(B2Parser.SEMI, 0); }
 		public ExprStatementContext(StatContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -355,7 +354,7 @@ public class B2Parser extends Parser {
 		StatContext _localctx = new StatContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_stat);
 		try {
-			setState(49);
+			setState(47);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case READ:
@@ -368,23 +367,21 @@ public class B2Parser extends Parser {
 				{
 				setState(28);
 				expr(0);
-				setState(29);
-				match(SEMI);
 				}
 				break;
 			case VAR:
 				_localctx = new VarStatementContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(31);
+				setState(29);
 				match(VAR);
-				setState(32);
+				setState(30);
 				match(ID);
-				setState(33);
+				setState(31);
 				match(ASSIGN);
-				setState(34);
+				setState(32);
 				expr(0);
-				setState(35);
+				setState(33);
 				match(SEMI);
 				}
 				break;
@@ -392,15 +389,15 @@ public class B2Parser extends Parser {
 				_localctx = new LetStatementContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(37);
+				setState(35);
 				match(LET);
-				setState(38);
+				setState(36);
 				match(ID);
-				setState(39);
+				setState(37);
 				match(ASSIGN);
-				setState(40);
+				setState(38);
 				expr(0);
-				setState(41);
+				setState(39);
 				match(SEMI);
 				}
 				break;
@@ -408,15 +405,15 @@ public class B2Parser extends Parser {
 				_localctx = new PrintStatementContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(43);
+				setState(41);
 				match(PRINT);
-				setState(44);
+				setState(42);
 				match(LPAREN);
-				setState(45);
+				setState(43);
 				expr(0);
-				setState(46);
+				setState(44);
 				match(RPAREN);
-				setState(47);
+				setState(45);
 				match(SEMI);
 				}
 				break;
@@ -468,7 +465,6 @@ public class B2Parser extends Parser {
 		public TerminalNode READ() { return getToken(B2Parser.READ, 0); }
 		public TerminalNode LPAREN() { return getToken(B2Parser.LPAREN, 0); }
 		public TerminalNode RPAREN() { return getToken(B2Parser.RPAREN, 0); }
-		public TerminalNode SEMI() { return getToken(B2Parser.SEMI, 0); }
 		public ReadExpressionContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -536,7 +532,7 @@ public class B2Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(64);
+			setState(61);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case MINUS:
@@ -545,9 +541,9 @@ public class B2Parser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(52);
+				setState(50);
 				match(MINUS);
-				setState(53);
+				setState(51);
 				expr(5);
 				}
 				break;
@@ -556,7 +552,7 @@ public class B2Parser extends Parser {
 				_localctx = new IntExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(54);
+				setState(52);
 				match(INT);
 				}
 				break;
@@ -565,7 +561,7 @@ public class B2Parser extends Parser {
 				_localctx = new IdExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(55);
+				setState(53);
 				match(ID);
 				}
 				break;
@@ -574,11 +570,11 @@ public class B2Parser extends Parser {
 				_localctx = new ParenExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(56);
+				setState(54);
 				match(LPAREN);
-				setState(57);
+				setState(55);
 				expr(0);
-				setState(58);
+				setState(56);
 				match(RPAREN);
 				}
 				break;
@@ -587,21 +583,19 @@ public class B2Parser extends Parser {
 				_localctx = new ReadExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(60);
+				setState(58);
 				match(READ);
-				setState(61);
+				setState(59);
 				match(LPAREN);
-				setState(62);
+				setState(60);
 				match(RPAREN);
-				setState(63);
-				match(SEMI);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(71);
+			setState(68);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -612,9 +606,9 @@ public class B2Parser extends Parser {
 					{
 					_localctx = new OpExpressionContext(new ExprContext(_parentctx, _parentState));
 					pushNewRecursionContext(_localctx, _startState, RULE_expr);
-					setState(66);
+					setState(63);
 					if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-					setState(67);
+					setState(64);
 					_la = _input.LA(1);
 					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << MULTI) | (1L << DIVIDE))) != 0)) ) {
 					_errHandler.recoverInline(this);
@@ -624,12 +618,12 @@ public class B2Parser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(68);
+					setState(65);
 					expr(7);
 					}
 					} 
 				}
-				setState(73);
+				setState(70);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			}
@@ -673,27 +667,26 @@ public class B2Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\24M\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\24J\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\24\n\3\3\3"+
 		"\3\3\3\3\3\3\7\3\32\n\3\f\3\16\3\35\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\64\n\4\3\5"+
-		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5C\n\5\3\5\3\5\3\5"+
-		"\7\5H\n\5\f\5\16\5K\13\5\3\5\2\4\4\b\6\2\4\6\b\2\3\3\2\16\21\2S\2\n\3"+
-		"\2\2\2\4\23\3\2\2\2\6\63\3\2\2\2\bB\3\2\2\2\n\13\5\4\3\2\13\3\3\2\2\2"+
-		"\f\r\b\3\1\2\r\16\5\6\4\2\16\17\5\6\4\2\17\24\3\2\2\2\20\21\5\6\4\2\21"+
-		"\22\5\4\3\5\22\24\3\2\2\2\23\f\3\2\2\2\23\20\3\2\2\2\24\33\3\2\2\2\25"+
-		"\26\f\3\2\2\26\32\5\4\3\4\27\30\f\4\2\2\30\32\5\6\4\2\31\25\3\2\2\2\31"+
-		"\27\3\2\2\2\32\35\3\2\2\2\33\31\3\2\2\2\33\34\3\2\2\2\34\5\3\2\2\2\35"+
-		"\33\3\2\2\2\36\37\5\b\5\2\37 \7\b\2\2 \64\3\2\2\2!\"\7\5\2\2\"#\7\13\2"+
-		"\2#$\7\7\2\2$%\5\b\5\2%&\7\b\2\2&\64\3\2\2\2\'(\7\6\2\2()\7\13\2\2)*\7"+
-		"\7\2\2*+\5\b\5\2+,\7\b\2\2,\64\3\2\2\2-.\7\4\2\2./\7\22\2\2/\60\5\b\5"+
-		"\2\60\61\7\23\2\2\61\62\7\b\2\2\62\64\3\2\2\2\63\36\3\2\2\2\63!\3\2\2"+
-		"\2\63\'\3\2\2\2\63-\3\2\2\2\64\7\3\2\2\2\65\66\b\5\1\2\66\67\7\17\2\2"+
-		"\67C\5\b\5\78C\7\t\2\29C\7\13\2\2:;\7\22\2\2;<\5\b\5\2<=\7\23\2\2=C\3"+
-		"\2\2\2>?\7\3\2\2?@\7\22\2\2@A\7\23\2\2AC\7\b\2\2B\65\3\2\2\2B8\3\2\2\2"+
-		"B9\3\2\2\2B:\3\2\2\2B>\3\2\2\2CI\3\2\2\2DE\f\b\2\2EF\t\2\2\2FH\5\b\5\t"+
-		"GD\3\2\2\2HK\3\2\2\2IG\3\2\2\2IJ\3\2\2\2J\t\3\2\2\2KI\3\2\2\2\b\23\31"+
-		"\33\63BI";
+		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\62\n\4\3\5\3\5\3\5"+
+		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5@\n\5\3\5\3\5\3\5\7\5E\n\5\f\5"+
+		"\16\5H\13\5\3\5\2\4\4\b\6\2\4\6\b\2\3\3\2\16\21\2P\2\n\3\2\2\2\4\23\3"+
+		"\2\2\2\6\61\3\2\2\2\b?\3\2\2\2\n\13\5\4\3\2\13\3\3\2\2\2\f\r\b\3\1\2\r"+
+		"\16\5\6\4\2\16\17\5\6\4\2\17\24\3\2\2\2\20\21\5\6\4\2\21\22\5\4\3\5\22"+
+		"\24\3\2\2\2\23\f\3\2\2\2\23\20\3\2\2\2\24\33\3\2\2\2\25\26\f\3\2\2\26"+
+		"\32\5\4\3\4\27\30\f\4\2\2\30\32\5\6\4\2\31\25\3\2\2\2\31\27\3\2\2\2\32"+
+		"\35\3\2\2\2\33\31\3\2\2\2\33\34\3\2\2\2\34\5\3\2\2\2\35\33\3\2\2\2\36"+
+		"\62\5\b\5\2\37 \7\5\2\2 !\7\13\2\2!\"\7\7\2\2\"#\5\b\5\2#$\7\b\2\2$\62"+
+		"\3\2\2\2%&\7\6\2\2&\'\7\13\2\2\'(\7\7\2\2()\5\b\5\2)*\7\b\2\2*\62\3\2"+
+		"\2\2+,\7\4\2\2,-\7\22\2\2-.\5\b\5\2./\7\23\2\2/\60\7\b\2\2\60\62\3\2\2"+
+		"\2\61\36\3\2\2\2\61\37\3\2\2\2\61%\3\2\2\2\61+\3\2\2\2\62\7\3\2\2\2\63"+
+		"\64\b\5\1\2\64\65\7\17\2\2\65@\5\b\5\7\66@\7\t\2\2\67@\7\13\2\289\7\22"+
+		"\2\29:\5\b\5\2:;\7\23\2\2;@\3\2\2\2<=\7\3\2\2=>\7\22\2\2>@\7\23\2\2?\63"+
+		"\3\2\2\2?\66\3\2\2\2?\67\3\2\2\2?8\3\2\2\2?<\3\2\2\2@F\3\2\2\2AB\f\b\2"+
+		"\2BC\t\2\2\2CE\5\b\5\tDA\3\2\2\2EH\3\2\2\2FD\3\2\2\2FG\3\2\2\2G\t\3\2"+
+		"\2\2HF\3\2\2\2\b\23\31\33\61?F";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

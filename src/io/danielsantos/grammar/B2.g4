@@ -9,7 +9,7 @@ cmpStat : stat stat                     # cmpStatStat
         | cmpStat cmpStat               # cmpCmpCmp
         ;
 
-stat : expr SEMI                        # exprStatement
+stat : expr                             # exprStatement
      | VAR ID ASSIGN expr SEMI          # varStatement
      | LET ID ASSIGN expr SEMI          # letStatement
      | PRINT LPAREN expr RPAREN SEMI    # printStatement
@@ -23,5 +23,5 @@ expr :  expr (
      |  INT                             # intExpression
      |  ID                              # idExpression
      |  LPAREN expr RPAREN              # parenExpression
-     |  READ LPAREN RPAREN SEMI         # readExpression
+     |  READ LPAREN RPAREN              # readExpression
      ;

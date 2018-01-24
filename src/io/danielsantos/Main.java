@@ -18,9 +18,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        if (args.length > 1) {
+        if (args.length >= 1) {
             try {
-                FileInputStream inputFile = new FileInputStream(args[1]);
+                FileInputStream inputFile = new FileInputStream(args[0]);
 
                 runFile(inputFile);
             } catch (FileNotFoundException e) {
@@ -38,11 +38,9 @@ public class Main {
             CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
             B2Parser parser = new B2Parser(commonTokenStream);
 
-            ParseTree tree = parser.stat();
+            ParseTree tree = parser.prog();
 
-            Statement stat = (Statement) new ASTBuilder().visit(tree);
-
-            Program prog = new Program(new CmpStatement(stat, null));
+            Program prog = (Program) new ASTBuilder().visit(tree);
 
             Interpreter.interpret(prog);
 
