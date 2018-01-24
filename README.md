@@ -17,4 +17,4 @@ let n = (x + (read() + 1));
 
 ### Demo
 YouTube link to a demo:
-[![B^2 Demo](https://img.youtube.com/vi/cHDoOxWjx8s/0.jpg)](https://youtu.be/cHDoOxWjx8s
+[![B^2 Demo](https://img.youtube.com/vi/cHDoOxWjx8s/0.jpg)](https://youtu.be/cHDoOxWjx8s)
