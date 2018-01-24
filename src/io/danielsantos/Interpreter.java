@@ -1,5 +1,6 @@
 package io.danielsantos;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -42,11 +43,22 @@ public class Interpreter {
     private static void handleIfStatement(IfStatement stat) throws ErrorException {
         IntExpression result = handleBinaryExpression(stat.binaryExpression);
 
+        ArrayList<String> localIdentifiers = new ArrayList<>();
+
         if (result.value.equals(1)) {
             for (Statement statInIf : stat.body) {
+
+                if (statInIf instanceof LetStatement) {
+                    localIdentifiers.add(((LetStatement) statInIf).id.id);
+                } else if (statInIf instanceof VarStatement) {
+                    localIdentifiers.add(((VarStatement) statInIf).id.id);
+                }
+
                 handleStatement(statInIf);
             }
         }
+
+        symbolTable.remove(localIdentifiers);
     }
 
     private static void handleVarStatement(VarStatement stat) throws ErrorException {

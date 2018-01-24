@@ -1,5 +1,6 @@
 package io.danielsantos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,5 +21,11 @@ public class SymbolTable {
 
     boolean containsObject(String id) {
         return _table.containsKey(id);
+    }
+
+    public void remove(ArrayList<String> localIdentifiers) {
+        for (String id : localIdentifiers) {
+            _table.remove(id);
+        }
     }
 }
