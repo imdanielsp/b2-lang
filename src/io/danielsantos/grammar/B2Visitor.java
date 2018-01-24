@@ -143,10 +143,9 @@ public interface B2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUnaryExpression(B2Parser.UnaryExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ifElseStatement}
-	 * labeled alternative in {@link B2Parser#ifStat}.
+	 * Visit a parse tree produced by {@link B2Parser#ifStat}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfElseStatement(B2Parser.IfElseStatementContext ctx);
+	T visitIfStat(B2Parser.IfStatContext ctx);
 }

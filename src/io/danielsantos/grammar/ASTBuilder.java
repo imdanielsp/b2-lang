@@ -2,6 +2,8 @@ package io.danielsantos.grammar;
 
 import io.danielsantos.*;
 
+import java.util.ArrayList;
+
 
 public class ASTBuilder extends B2BaseVisitor<Object> {
 
@@ -117,5 +119,58 @@ public class ASTBuilder extends B2BaseVisitor<Object> {
     @Override
     public Object visitReadExpression(B2Parser.ReadExpressionContext ctx) {
         return new ReadExpression();
+    }
+
+    @Override
+    public Object visitBoolExpression(B2Parser.BoolExpressionContext ctx) {
+        Expression left = (Expression) this.visit(ctx.expr(0));
+        Expression right = (Expression) this.visit(ctx.expr(1));
+        BinaryOperator op = null;
+
+        if (ctx.EQUALITY() != null) {
+            op = BinaryOperator.EQUAL;
+        } else if (ctx.NOT_EQUALITY() != null) {
+            op = BinaryOperator.NOT_EQUAL;
+        } else if (ctx.GREAT_THAN() != null) {
+            op = BinaryOperator.GREATER_THAN;
+        } else if (ctx.GREAT_THAN_EQ() != null) {
+            op = BinaryOperator.GREATER_THAN_EQ;
+        } else if (ctx.LESS_THAN() != null) {
+            op = BinaryOperator.LESS_THAN;
+        } else if (ctx.LESS_THAN_EQ() != null) {
+            op = BinaryOperator.LESS_THAN_EQ;
+        }
+
+        return new BinaryExpression(left, op, right);
+    }
+
+    @Override
+    public Object visitParenBoolExpression(B2Parser.ParenBoolExpressionContext ctx) {
+        return this.visit(ctx.binaryExpr());
+    }
+
+    @Override
+    public Object visitUnaryExpression(B2Parser.UnaryExpressionContext ctx) {
+        BinaryExpression binaryExpression = (BinaryExpression) this.visit(ctx.binaryExpr());
+        UnaryOperator op = null;
+
+        if (ctx.NOT() != null) {
+            op = UnaryOperator.NOT;
+        }
+
+        return new UnaryExpression(binaryExpression, op);
+    }
+
+    @Override
+    public Object visitIfStatement(B2Parser.IfStatementContext ctx) {
+        BinaryExpression binaryExpression = (BinaryExpression) this.visit(ctx.ifStat().binaryExpr());
+
+        ArrayList<Statement> body = new ArrayList<>();
+
+        for (B2Parser.StatContext statCtx : ctx.ifStat().stat()) {
+            body.add((Statement) this.visit(statCtx));
+        }
+
+        return new IfStatement(binaryExpression, body, null);
     }
 }

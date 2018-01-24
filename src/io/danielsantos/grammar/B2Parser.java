@@ -801,17 +801,6 @@ public class B2Parser extends Parser {
 	}
 
 	public static class IfStatContext extends ParserRuleContext {
-		public IfStatContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_ifStat; }
-	 
-		public IfStatContext() { }
-		public void copyFrom(IfStatContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class IfElseStatementContext extends IfStatContext {
 		public TerminalNode IF() { return getToken(B2Parser.IF, 0); }
 		public TerminalNode LPAREN() { return getToken(B2Parser.LPAREN, 0); }
 		public BinaryExprContext binaryExpr() {
@@ -824,11 +813,13 @@ public class B2Parser extends Parser {
 		public StatContext stat(int i) {
 			return getRuleContext(StatContext.class,i);
 		}
-		public TerminalNode ELSE() { return getToken(B2Parser.ELSE, 0); }
-		public IfElseStatementContext(IfStatContext ctx) { copyFrom(ctx); }
+		public IfStatContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_ifStat; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof B2Visitor ) return ((B2Visitor<? extends T>)visitor).visitIfElseStatement(this);
+			if ( visitor instanceof B2Visitor ) return ((B2Visitor<? extends T>)visitor).visitIfStat(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -838,7 +829,6 @@ public class B2Parser extends Parser {
 		enterRule(_localctx, 10, RULE_ifStat);
 		int _la;
 		try {
-			_localctx = new IfElseStatementContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(92);
@@ -867,34 +857,6 @@ public class B2Parser extends Parser {
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << READ) | (1L << PRINT) | (1L << VAR) | (1L << LET) | (1L << IF) | (1L << INT) | (1L << ID) | (1L << MINUS) | (1L << LPAREN))) != 0) );
 			setState(102);
 			match(T__1);
-			setState(112);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
-			case 1:
-				{
-				setState(103);
-				match(ELSE);
-				setState(104);
-				match(T__0);
-				setState(106); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				do {
-					{
-					{
-					setState(105);
-					stat();
-					}
-					}
-					setState(108); 
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << READ) | (1L << PRINT) | (1L << VAR) | (1L << LET) | (1L << IF) | (1L << INT) | (1L << ID) | (1L << MINUS) | (1L << LPAREN))) != 0) );
-				setState(110);
-				match(T__1);
-				}
-				break;
-			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -935,36 +897,33 @@ public class B2Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\37u\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\37k\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\3\2\3\3\3\3\3\3\5\3\24\n\3\3\3"+
 		"\3\3\3\3\5\3\31\n\3\3\3\3\3\3\3\3\3\7\3\37\n\3\f\3\16\3\"\13\3\3\4\3\4"+
 		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
 		"\4\5\48\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5F\n\5\3"+
 		"\5\3\5\3\5\7\5K\n\5\f\5\16\5N\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6"+
 		"\3\6\3\6\3\6\3\6\5\6]\n\6\3\7\3\7\3\7\3\7\3\7\3\7\6\7e\n\7\r\7\16\7f\3"+
-		"\7\3\7\3\7\3\7\6\7m\n\7\r\7\16\7n\3\7\3\7\5\7s\n\7\3\7\2\4\4\b\b\2\4\6"+
-		"\b\n\f\2\4\3\2\22\25\3\2\26\33\2\u0080\2\16\3\2\2\2\4\30\3\2\2\2\6\67"+
-		"\3\2\2\2\bE\3\2\2\2\n\\\3\2\2\2\f^\3\2\2\2\16\17\5\4\3\2\17\3\3\2\2\2"+
-		"\20\21\b\3\1\2\21\23\5\6\4\2\22\24\5\6\4\2\23\22\3\2\2\2\23\24\3\2\2\2"+
-		"\24\31\3\2\2\2\25\26\5\6\4\2\26\27\5\4\3\5\27\31\3\2\2\2\30\20\3\2\2\2"+
-		"\30\25\3\2\2\2\31 \3\2\2\2\32\33\f\3\2\2\33\37\5\4\3\4\34\35\f\4\2\2\35"+
-		"\37\5\6\4\2\36\32\3\2\2\2\36\34\3\2\2\2\37\"\3\2\2\2 \36\3\2\2\2 !\3\2"+
-		"\2\2!\5\3\2\2\2\" \3\2\2\2#8\5\b\5\2$%\7\7\2\2%&\7\17\2\2&\'\7\13\2\2"+
-		"\'(\5\b\5\2()\7\f\2\2)8\3\2\2\2*+\7\b\2\2+,\7\17\2\2,-\7\13\2\2-.\5\b"+
-		"\5\2./\7\f\2\2/8\3\2\2\2\60\61\7\6\2\2\61\62\7\35\2\2\62\63\5\b\5\2\63"+
-		"\64\7\36\2\2\64\65\7\f\2\2\658\3\2\2\2\668\5\f\7\2\67#\3\2\2\2\67$\3\2"+
-		"\2\2\67*\3\2\2\2\67\60\3\2\2\2\67\66\3\2\2\28\7\3\2\2\29:\b\5\1\2:;\7"+
-		"\23\2\2;F\5\b\5\7<F\7\r\2\2=F\7\17\2\2>?\7\35\2\2?@\5\b\5\2@A\7\36\2\2"+
-		"AF\3\2\2\2BC\7\5\2\2CD\7\35\2\2DF\7\36\2\2E9\3\2\2\2E<\3\2\2\2E=\3\2\2"+
-		"\2E>\3\2\2\2EB\3\2\2\2FL\3\2\2\2GH\f\b\2\2HI\t\2\2\2IK\5\b\5\tJG\3\2\2"+
-		"\2KN\3\2\2\2LJ\3\2\2\2LM\3\2\2\2M\t\3\2\2\2NL\3\2\2\2OP\5\b\5\2PQ\t\3"+
-		"\2\2QR\5\b\5\2R]\3\2\2\2ST\7\35\2\2TU\5\n\6\2UV\7\36\2\2V]\3\2\2\2WX\7"+
-		"\34\2\2XY\7\35\2\2YZ\5\n\6\2Z[\7\36\2\2[]\3\2\2\2\\O\3\2\2\2\\S\3\2\2"+
-		"\2\\W\3\2\2\2]\13\3\2\2\2^_\7\t\2\2_`\7\35\2\2`a\5\n\6\2ab\7\36\2\2bd"+
-		"\7\3\2\2ce\5\6\4\2dc\3\2\2\2ef\3\2\2\2fd\3\2\2\2fg\3\2\2\2gh\3\2\2\2h"+
-		"r\7\4\2\2ij\7\n\2\2jl\7\3\2\2km\5\6\4\2lk\3\2\2\2mn\3\2\2\2nl\3\2\2\2"+
-		"no\3\2\2\2op\3\2\2\2pq\7\4\2\2qs\3\2\2\2ri\3\2\2\2rs\3\2\2\2s\r\3\2\2"+
-		"\2\r\23\30\36 \67EL\\fnr";
+		"\7\3\7\3\7\2\4\4\b\b\2\4\6\b\n\f\2\4\3\2\22\25\3\2\26\33\2t\2\16\3\2\2"+
+		"\2\4\30\3\2\2\2\6\67\3\2\2\2\bE\3\2\2\2\n\\\3\2\2\2\f^\3\2\2\2\16\17\5"+
+		"\4\3\2\17\3\3\2\2\2\20\21\b\3\1\2\21\23\5\6\4\2\22\24\5\6\4\2\23\22\3"+
+		"\2\2\2\23\24\3\2\2\2\24\31\3\2\2\2\25\26\5\6\4\2\26\27\5\4\3\5\27\31\3"+
+		"\2\2\2\30\20\3\2\2\2\30\25\3\2\2\2\31 \3\2\2\2\32\33\f\3\2\2\33\37\5\4"+
+		"\3\4\34\35\f\4\2\2\35\37\5\6\4\2\36\32\3\2\2\2\36\34\3\2\2\2\37\"\3\2"+
+		"\2\2 \36\3\2\2\2 !\3\2\2\2!\5\3\2\2\2\" \3\2\2\2#8\5\b\5\2$%\7\7\2\2%"+
+		"&\7\17\2\2&\'\7\13\2\2\'(\5\b\5\2()\7\f\2\2)8\3\2\2\2*+\7\b\2\2+,\7\17"+
+		"\2\2,-\7\13\2\2-.\5\b\5\2./\7\f\2\2/8\3\2\2\2\60\61\7\6\2\2\61\62\7\35"+
+		"\2\2\62\63\5\b\5\2\63\64\7\36\2\2\64\65\7\f\2\2\658\3\2\2\2\668\5\f\7"+
+		"\2\67#\3\2\2\2\67$\3\2\2\2\67*\3\2\2\2\67\60\3\2\2\2\67\66\3\2\2\28\7"+
+		"\3\2\2\29:\b\5\1\2:;\7\23\2\2;F\5\b\5\7<F\7\r\2\2=F\7\17\2\2>?\7\35\2"+
+		"\2?@\5\b\5\2@A\7\36\2\2AF\3\2\2\2BC\7\5\2\2CD\7\35\2\2DF\7\36\2\2E9\3"+
+		"\2\2\2E<\3\2\2\2E=\3\2\2\2E>\3\2\2\2EB\3\2\2\2FL\3\2\2\2GH\f\b\2\2HI\t"+
+		"\2\2\2IK\5\b\5\tJG\3\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3\2\2\2M\t\3\2\2\2NL"+
+		"\3\2\2\2OP\5\b\5\2PQ\t\3\2\2QR\5\b\5\2R]\3\2\2\2ST\7\35\2\2TU\5\n\6\2"+
+		"UV\7\36\2\2V]\3\2\2\2WX\7\34\2\2XY\7\35\2\2YZ\5\n\6\2Z[\7\36\2\2[]\3\2"+
+		"\2\2\\O\3\2\2\2\\S\3\2\2\2\\W\3\2\2\2]\13\3\2\2\2^_\7\t\2\2_`\7\35\2\2"+
+		"`a\5\n\6\2ab\7\36\2\2bd\7\3\2\2ce\5\6\4\2dc\3\2\2\2ef\3\2\2\2fd\3\2\2"+
+		"\2fg\3\2\2\2gh\3\2\2\2hi\7\4\2\2i\r\3\2\2\2\13\23\30\36 \67EL\\f";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

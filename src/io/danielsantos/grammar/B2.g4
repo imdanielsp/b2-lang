@@ -38,6 +38,5 @@ binaryExpr : expr (
          | (NOT) LPAREN binaryExpr RPAREN   # unaryExpression
          ;
 
-ifStat : IF LPAREN binaryExpr RPAREN
-        '{' stat+ '}' (ELSE '{' stat+ '}')? # ifElseStatement
+ifStat : IF LPAREN binaryExpr RPAREN '{' stat+ '}'
        ;

@@ -150,5 +150,5 @@ public class B2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements B2V
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIfElseStatement(B2Parser.IfElseStatementContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIfStat(B2Parser.IfStatContext ctx) { return visitChildren(ctx); }
 }
