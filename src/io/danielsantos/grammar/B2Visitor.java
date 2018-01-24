@@ -73,6 +73,13 @@ public interface B2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrintStatement(B2Parser.PrintStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ifStatement}
+	 * labeled alternative in {@link B2Parser#stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfStatement(B2Parser.IfStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code idExpression}
 	 * labeled alternative in {@link B2Parser#expr}.
 	 * @param ctx the parse tree
@@ -114,4 +121,32 @@ public interface B2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNegExpression(B2Parser.NegExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link B2Parser#binaryExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolExpression(B2Parser.BoolExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code parenBoolExpression}
+	 * labeled alternative in {@link B2Parser#binaryExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParenBoolExpression(B2Parser.ParenBoolExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code unaryExpression}
+	 * labeled alternative in {@link B2Parser#binaryExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnaryExpression(B2Parser.UnaryExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ifElseStatement}
+	 * labeled alternative in {@link B2Parser#ifStat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfElseStatement(B2Parser.IfElseStatementContext ctx);
 }

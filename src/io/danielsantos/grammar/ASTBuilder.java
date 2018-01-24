@@ -92,16 +92,16 @@ public class ASTBuilder extends B2BaseVisitor<Object> {
     public Object visitOpExpression(B2Parser.OpExpressionContext ctx) {
         Expression left = (Expression) this.visit(ctx.expr(0));
         Expression right = (Expression) this.visit(ctx.expr(1));
-        Operation op = null;
+        Operator op = null;
 
         if (ctx.PLUS() != null) {
-            op = Operation.PLUS;
+            op = Operator.PLUS;
         } else if (ctx.MINUS() != null) {
-            op = Operation.MINUS;
+            op = Operator.MINUS;
         } else if (ctx.DIVIDE() != null) {
-            op = Operation.DIVIDE;
+            op = Operator.DIVIDE;
         } else if (ctx.MULTI() != null) {
-            op = Operation.MULTI;
+            op = Operator.MULTI;
         }
 
         return new OpExpression(left, op, right);

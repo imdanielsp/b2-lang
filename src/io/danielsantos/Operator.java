@@ -1,6 +1,6 @@
 package io.danielsantos;
 
-public enum Operation {
+public enum Operator {
     PLUS,
     MINUS,
     DIVIDE,

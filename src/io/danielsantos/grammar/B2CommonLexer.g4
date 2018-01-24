@@ -4,6 +4,9 @@ READ : 'read' ;
 PRINT : 'print';
 VAR : 'var';
 LET : 'let';
+IF : 'if';
+ELSE : 'else';
+
 ASSIGN : '=';
 SEMI : ';';
 
@@ -22,6 +25,14 @@ PLUS : '+' ;
 MINUS : '-';
 MULTI : '*';
 DIVIDE : '/';
+
+EQUALITY : '==';
+NOT_EQUALITY : '!=';
+GREAT_THAN : '>';
+GREAT_THAN_EQ : '>=';
+LESS_THAN : '<';
+LESS_THAN_EQ : '<=';
+NOT : '!';
 
 LPAREN : '(';
 RPAREN : ')';
