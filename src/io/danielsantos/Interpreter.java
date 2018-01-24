@@ -34,6 +34,18 @@ public class Interpreter {
             handleStatement(((CmpStatement) stat).right);
         } else if (stat instanceof Expression) {
             handleExpression((Expression) stat);
+        } else if (stat instanceof IfStatement) {
+            handleIfStatement((IfStatement) stat);
+        }
+    }
+
+    private static void handleIfStatement(IfStatement stat) throws ErrorException {
+        IntExpression result = handleBinaryExpression(stat.binaryExpression);
+
+        if (result.value.equals(1)) {
+            for (Statement statInIf : stat.body) {
+                handleStatement(statInIf);
+            }
         }
     }
 
@@ -77,8 +89,56 @@ public class Interpreter {
             return (IntExpression) expression;
         } else if (expression instanceof ReadExpression) {
             return handleReadExpression((ReadExpression) expression);
+        } else if (expression instanceof BinaryExpression) {
+            return handleBinaryExpression((BinaryExpression) expression);
         } else {
             throw new ErrorException("Expression: " + expression.toString() + " is invalid.");
+        }
+    }
+
+    private static IntExpression handleBinaryExpression(BinaryExpression expression) throws ErrorException {
+        IntExpression left = handleExpression(expression.left);
+        IntExpression right = handleExpression(expression.right);
+
+        switch (expression.op) {
+            case EQUAL:
+                if (left.value.equals(right.value)) {
+                    return new IntExpression(1);
+                } else {
+                    return new IntExpression(0);
+                }
+            case NOT_EQUAL:
+                if (!left.value.equals(right.value)) {
+                    return new IntExpression(1);
+                } else {
+                    return new IntExpression(0);
+                }
+            case GREATER_THAN:
+                if (left.value > right.value) {
+                    return new IntExpression(1);
+                } else {
+                    return new IntExpression(0);
+                }
+            case GREATER_THAN_EQ:
+                if (left.value >= right.value) {
+                    return new IntExpression(1);
+                } else {
+                    return new IntExpression(0);
+                }
+            case LESS_THAN:
+                if (left.value < right.value) {
+                    return new IntExpression(1);
+                } else {
+                    return new IntExpression(0);
+                }
+            case LESS_THAN_EQ:
+                if (left.value <= right.value) {
+                    return new IntExpression(1);
+                } else {
+                    return new IntExpression(0);
+                }
+            default:
+                throw new ErrorException("Unsupported binary operator");
         }
     }
 
